@@ -1,0 +1,29 @@
+.ribbon-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.ribbon {
+  display: block;
+  width: 100%;
+}
+
+.path {
+  fill: none;
+  stroke: darkred;
+  stroke-width: 25;
+  z-index: 1;
+}
+
+.point {
+  fill: blue;
+}
+
+.point-text {
+  fill: white;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
