@@ -4,19 +4,19 @@ import { usePathTrajectory } from "../../hooks/usePathTrajectory.ts";
 import { usePath } from "../../contexts/PathContext.tsx";
 import { motion, useScroll, useSpring } from "motion/react";
 
-interface RibbonProps {
-  width: number;
-  height: number;
-}
-
-export const Ribbon: FunctionComponent<RibbonProps> = ({ width, height }) => {
+export const Ribbon: FunctionComponent = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { points } = usePath();
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const {
+    points,
+    size: [width, height],
+  } = usePath();
+
   const trajectory = usePathTrajectory(
     points.sort(([, y1], [, y2]) => y1 - y2),
   );
   const { scrollYProgress } = useScroll({
-    target: ref,
     offset: [
       [0, 0.5],
       [1, 1],
@@ -38,6 +38,7 @@ export const Ribbon: FunctionComponent<RibbonProps> = ({ width, height }) => {
           pathLength={1}
           style={{ pathLength: springScrollYProgress }}
           strokeLinecap="round"
+          vectorEffect="non-scaling-stroke"
         />
 
         {points.map(([x, y], i) => (

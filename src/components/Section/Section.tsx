@@ -7,12 +7,16 @@ export const Section: FunctionComponent<{ children: ReactNode }> = ({
   children,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const points = usePoints(ref);
-  const { addPoints } = usePath();
+  const { addPoints, replacePoints, size } = usePath();
+  const { previousPoints, points } = usePoints(ref, size);
 
   useEffect(() => {
-    addPoints(points);
-  }, [addPoints, points]);
+    if (previousPoints) {
+      replacePoints(previousPoints, points);
+    } else {
+      addPoints(points);
+    }
+  }, [addPoints, points, previousPoints, replacePoints]);
 
   return (
     <section className="section" ref={ref}>
