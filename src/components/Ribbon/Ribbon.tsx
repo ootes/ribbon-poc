@@ -6,7 +6,6 @@ import { motion, useScroll, useSpring } from "motion/react";
 
 export const Ribbon: FunctionComponent = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const {
     points,
